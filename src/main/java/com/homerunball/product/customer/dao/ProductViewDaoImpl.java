@@ -14,33 +14,37 @@ import java.util.Map;
 public class ProductViewDaoImpl implements ProductViewDao {
     @Autowired
     SqlSession session;
-    private static String namespace = "com.homerunball.product.customer.dao.ProductViewMapper.";
+    private static final String NAMESPACE = "com.homerunball.product.customer.dao.ProductViewMapper.";
 
     @Override
     public int countPrd() throws Exception{
-        return session.selectOne(namespace+"countPrd");
+        return session.selectOne(NAMESPACE+"countPrd");
     }
     @Override
     public ProductViewDto selectPrd(String pd_id) throws Exception{
-        return session.selectOne(namespace+"selectPrd",pd_id);
+        return session.selectOne(NAMESPACE+"selectPrd",pd_id);
     }
     @Override
     public List<ProductViewDto> selectAllPrd() throws Exception{
-        return session.selectList(namespace+"selectAllPrd");
+        return session.selectList(NAMESPACE+"selectAllPrd");
     }
     @Override
     public StockViewDto selectStkRandOne(String pd_id) throws Exception{
-        return session.selectOne(namespace+"selectStkRandOne", pd_id);
+        return session.selectOne(NAMESPACE+"selectStkRandOne", pd_id);
     }
     @Override
     public List<StockViewDto> selectAllStkId(String pd_id) throws Exception{
-        return session.selectList(namespace+"selectAllStkId", pd_id);
+        return session.selectList(NAMESPACE+"selectAllStkId", pd_id);
     }
     @Override
     public StockViewDto selectStkOpt(String pd_id, String pd_clsf_cd) throws Exception{
         Map map = new HashMap();
         map.put("pd_id", pd_id);
         map.put("pd_clsf_cd", pd_clsf_cd);
-        return session.selectOne(namespace+"selectStkOpt", map);
+        return session.selectOne(NAMESPACE+"selectStkOpt", map);
+    }
+    @Override
+    public List<Map<String, Object>> findByKeyword(String keyword) {
+        return session.selectList(NAMESPACE+"findByKeyword", keyword);
     }
 }

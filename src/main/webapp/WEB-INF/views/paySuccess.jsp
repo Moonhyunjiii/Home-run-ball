@@ -45,7 +45,7 @@
         <!--        <button class="button p-grid-col5" onclick="location.href='https://docs.tosspayments.com/guides/payment/integration';">연동 문서</button>-->
         <!--        <button class="button p-grid-col5" onclick="location.href='https://discord.gg/A4fRFXQhRu';" style="background-color: #e8f3ff; color: #1b64da">실시간 문의</button>-->
         <!--      </div>-->
-        <div class="wrapper__parent" style="flex-direction: row">
+        <div class="wrapper__parent" style="flex-direction: row; justify-content: center">
             <a href="/">
                 <button class="button" id="btnBackToHome">홈 화면</button>
             </a>

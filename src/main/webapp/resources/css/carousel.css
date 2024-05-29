@@ -109,7 +109,7 @@ body {
 
 .product-category {
     color: #000;
-    font-size: 4vw;
+    font-size: 2vw;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
@@ -127,6 +127,7 @@ body {
     display: block;
     color: black;
     text-decoration: none;
+    font-weight: 400;
 }
 
 .productName > a:hover {
@@ -282,14 +283,17 @@ body {
     display: block;
 }
 
+strike {
+    display: flex;
+}
+
 price {
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     font-weight: bolder;
-    color: grey;
 }
 
 sale-price {
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     font-weight: bolder;
     color: red;
 }
@@ -302,8 +306,8 @@ sale-price {
     position: relative;
     width: inherit;
     background-color: rgb(235, 235, 235);
-    max-width: 445px;
-    max-height: 445px;
+    max-width: 420px;
+    max-height: 420px;
 }
 .product-image-box::after {
     display: block;
@@ -315,7 +319,6 @@ sale-price {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 445px;
-    max-height: 445px;
-    /*object-fit: cover;*/
+    max-width: 420px;
+    max-height: 420px;
 }

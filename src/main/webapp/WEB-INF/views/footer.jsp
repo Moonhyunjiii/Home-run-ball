@@ -10,11 +10,11 @@
             </div>
             <div class="footerBottom">
                 <ul class="menu">
-                    <li><a href="#">브랜드스토리 |&nbsp</a></li>
-                    <li><a href="#">회사소개 |&nbsp</a></li>
-                    <li><a href="#">이용약관 |&nbsp</a></li>
-                    <li><a href="#">개인정보처리방침 |&nbsp</a></li>
-                    <li><a href="#">고객센터</a></li>
+                    <li><a href="javascript:void(0);">브랜드스토리 |&nbsp</a></li>
+                    <li><a href="javascript:void(0);">회사소개 |&nbsp</a></li>
+                    <li><a href="javascript:void(0);">이용약관 |&nbsp</a></li>
+                    <li><a href="javascript:void(0);">개인정보처리방침 |&nbsp</a></li>
+                    <li><a href="javascript:void(0);">고객센터</a></li>
                 </ul>
                 <address class="info">
                     <div>

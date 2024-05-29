@@ -1,4 +1,4 @@
-.order__items * {
+* {
     font-family: "IBM Plex Sans KR", sans-serif;
     /*font-weight: 400;*/
     font-style: normal;
@@ -13,6 +13,25 @@
     font-size: 13px;
     line-height: 1.35;
     color: #777;
+}
+
+.product-info {
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: left !important;
+}
+
+.product-info img {
+    width: 100px;
+    height: 110px;
+    object-fit: scale-down;
+    background-color: #ebebeb;
+}
+
+.info {
+    margin-left: 50px;
 }
 
 .order__title__detail a,
@@ -100,10 +119,12 @@
     font-size: 14px;
 }
 
+
 .tb__order img {
     height: 110px;
     width: 110px;
 }
+
 
 .order__title__detail {
     font-size: 15px;
@@ -119,10 +140,10 @@
 
 .title__order {
     margin-left: 8%;
-    font-size: 15px;
+    font-size: 25px;
     font-weight: 600;
     margin-bottom: 10px;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 .tb__right div {
@@ -140,7 +161,28 @@
     justify-content: space-between;
 }
 
-#odpayamt{
+#odpayamt {
     font-size: larger;
     font-weight: 900;
 }
+
+.product-row {
+    border-bottom: 1px solid #ccc;
+}
+
+
+.tb__right {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+/*
+.tb__order tfoot td,
+.tb__order tfoot tr{
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+*/
+

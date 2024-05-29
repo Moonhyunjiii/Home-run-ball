@@ -20,6 +20,8 @@ public interface OrderDetDao {
 
   List<OrderDetDto> select(int c_id) throws Exception;
 
+  List<OrderDetDto> selectByOdId(int c_id, BigInteger od_id) throws Exception;
+
   List<OrderDetDto> idselect(BigInteger od_id) throws Exception;
 
   List<OrderDetDto> selectAll() throws Exception;

@@ -27,4 +27,8 @@
     <select id="selectStkOpt" resultType="stkViewDto" parameterType="map">
         select * from stk where pd_id = #{pd_id} and pd_clsf_cd = #{pd_clsf_cd};
     </select>
+<!--    제품명 키워드로 최대 5개까지 테이블을 조회-->
+    <select id="findByKeyword" resultType="map" parameterType="String">
+        select pd_id, pd_name from prd where pd_name like concat('%', #{keyword} ,'%') limit 5;
+    </select>
 </mapper>

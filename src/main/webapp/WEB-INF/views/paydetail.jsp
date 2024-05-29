@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +23,7 @@
     <link href="<c:url value='/css/footer.css'/>" type="text/css" rel="stylesheet"/>
     <link href="<c:url value='/css/nav.css'/>" type="text/css" rel="stylesheet"/>
 
-    <title>주문내역조회</title>
+    <title>단일 주문내역조회</title>
     <%-- [혁락] css 수정 시작 --%>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"/>
     <style>
@@ -36,7 +35,7 @@
 <jsp:include page="header.jsp"/>
 <jsp:include page="myPageHeader.jsp"/>
 <br><br>
-<div class="head_order_det">주문내역조회</div>
+<div class="head_order_det">단일 주문내역조회</div>
 <main>
     <!-- 주문 목록 섹션 -->
     <div class="order-container">
@@ -44,15 +43,15 @@
             <table class="order_det_table">
                 <colgroup>
                     <col width="30%"/>
-                    <col width="20%"/>
+                    <col width="30%"/>
                     <col width="15%"/>
                     <col width="15%"/>
-                    <col width="20%"/>
+                    <col width="10%"/>
                 </colgroup>
 
                 <thead>
                 <tr>
-                    <th>제품정보</th>
+                    <th>상품정보</th>
                     <!-- 상품 정보 헤더 -->
                     <th>주문일자</th>
                     <!-- 주문일자 헤더 -->
@@ -110,13 +109,14 @@
 
                                         <!-- 주문일자 -->
                                         <td>
-                                            <fmt:formatDate pattern="yyyy-MM-dd" value="${orderdetDto.od_dt}"/>
+                                            <span data-oddt="${orderdetDto.od_dt}"
+                                                  class="od_dt">${orderdetDto.od_dt}</span>
                                         </td>
 
                                         <!-- 주문번호 -->
                                         <td>
                                             <div class="order-number">
-                                                <a href='<c:url value="/orderDetail?od_id=${orderdetDto.od_id}"/>' class="open_od_id_modal">${orderdetDto.od_id}</a>
+                                                <a href="#" class="open_od_id_modal">${orderdetDto.od_id}</a>
                                                 <form id="orderForm" action="/orderDetail" style="display: none;">
                                                     <input type="hidden" data-odId="${orderdetDto.od_id}" name="orderId" id="orderId">
                                                 </form>
@@ -125,8 +125,8 @@
 
                                         <!-- 주문금액 및 수량 -->
                                         <td>
-                                            <div class="order-amount" data-order-id="">
-                                                <span class="priceFormat">${orderdetDto.sls_prc * orderdetDto.od_qty}</span>
+                                            <div class="order-amount" data-order-id="20231208212440001">
+                                                <span>${orderdetDto.sls_prc * orderdetDto.od_qty}</span>
                                                 <span>${orderdetDto.od_qty} 개</span>
                                             </div>
                                         </td>
@@ -151,8 +151,8 @@
                                             </c:if>
                                         </td>
                                     </tr>
-                                                    <!-- 추가 주문 행을 여기에 추가 -->
-                                </tbody>
+                                    <!-- 추가 주문 행을 여기에 추가 -->
+                                    </tbody>
                                 </c:forEach>
                             </c:otherwise>
                         </c:choose>
@@ -398,26 +398,16 @@
 
             <script>
 
-                $(document).ready(function () {
-                    $('.priceFormat').each(function () {
-                        let value = $(this).text();
-                        value = value.replace(/,/g, '');
-                        const numbericValue = parseInt(value);
-                        const formatValue = numbericValue.toLocaleString('ko-KR');
-                        $(this).text(formatValue + '원');
-                    })
-                })
-
-                document.addEventListener('DOMContentLoaded', () => {
-                    const orderStepModal = document.querySelector('#orderStepModal');
-                    const deliveryModal = document.querySelector('#deliveryModal');
-                    const orderIdModal = document.querySelector('#orderIdModal');
-                    const closeModalButtons = document.querySelectorAll('.close');
-                    let modalContent = document.querySelectorAll('.modal-content');
-                    const openOrderStepModalButtons = document.querySelectorAll('.open-order-step-modal');
-                    const openDeliveryModalButtons = document.querySelectorAll('.open-delivery-modal');
-                    const openOrderIdModalButtons = document.querySelectorAll('.open-od_id-modal')
-                    const cancelOrderConfirmModal = document.querySelectorAll('.cancel-order-confirm-modal');
+              document.addEventListener('DOMContentLoaded', () => {
+                const orderStepModal = document.querySelector('#orderStepModal');
+                const deliveryModal = document.querySelector('#deliveryModal');
+                const orderIdModal = document.querySelector('#orderIdModal');
+                const closeModalButtons = document.querySelectorAll('.close');
+                let modalContent = document.querySelectorAll('.modal-content');
+                const openOrderStepModalButtons = document.querySelectorAll('.open-order-step-modal');
+                const openDeliveryModalButtons = document.querySelectorAll('.open-delivery-modal');
+                const openOrderIdModalButtons = document.querySelectorAll('.open-od_id-modal')
+                const cancelOrderConfirmModal = document.querySelectorAll('.cancel-order-confirm-modal');
 
                 /* 영수증 모달 */
                 const receiptModal = document.querySelector('#receiptModal');
@@ -532,75 +522,71 @@
                   printWindow.close();
                 };
 
-                  /*  /!* 원 표시*!/
-                    // Function to format the date
-                    const formatDate = (isoDateString) => {
-                        const date = new Date(isoDateString);
+                /* 원 표시*/
+                // Function to format the date
+                const formatDate = (isoDateString) => {
+                  const date = new Date(isoDateString);
 
-                        // Format the date as yyyy.mm.dd
-                        const formattedDate = date.toLocaleDateString('ko-KR', {
-                            year: 'numeric',
-                            month: '2-digit',
-                            day: '2-digit'
-                        }).replace(/\. /g, '.');
+                  // Format the date as yyyy.mm.dd
+                  const formattedDate = date.toLocaleDateString('ko-KR', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit'
+                  }).replace(/\. /g, '.');
 
-                        // Format the time as HH:MM
-                        const formattedTime = date.toLocaleTimeString('ko-KR', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false
-                        });
+                  // Format the time as HH:MM
+                  const formattedTime = date.toLocaleTimeString('ko-KR', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                  });
 
-                        return `${'${formattedDate}'} ${'${formattedTime}'}`;
-                    };
+                  return `${'${formattedDate}'} ${'${formattedTime}'}`;
+                };
 
-                    // Function to format the price
-                    const formatPrice = (price) => `${'${price.toLocaleString("ko-KR")}'} 원`;
+                // Function to format the price
+                const formatPrice = (price) => `${'${price.toLocaleString("ko-KR")}'} 원`;
 
-                    // Apply formatting to each transaction
-                    document.querySelectorAll('.order-item-hist').forEach(transaction => {
-                        const dateElement = transaction.querySelector('.order-date');
-                        const priceElement = transaction.querySelector('.sls_prc');
+                // Apply formatting to each transaction
+                document.querySelectorAll('.order-item-hist').forEach(transaction => {
+                  const dateElement = transaction.querySelector('.order-date');
+                  const priceElement = transaction.querySelector('.sls_prc');
 
-                        const isoDateString = new Date(dateElement.textContent).toISOString();
-                        const price = parseInt(priceElement.textContent, 10);
+                  const isoDateString = new Date(dateElement.textContent).toISOString();
+                  const price = parseInt(priceElement.textContent, 10);
 
-                        dateElement.textContent = formatDate(isoDateString);
-                        priceElement.textContent = formatPrice(price);
-                    });*/
+                  dateElement.textContent = formatDate(isoDateString);
+                  priceElement.textContent = formatPrice(price);
+                });
 
-
-
-
-
-                    /* TODO: od_dt 데이터 가져오기
-                    $(document).ready(function () {
-                        $('.od_dt').each(function () {
-                            let oddt = $(this).data("oddt"); /!* od_dt 데이터 가져오기 *!/
-                            let today = new Date();
-                            let dateFormat = today.getFullYear(oddt) + '.' + (today.getMonth(oddt) + 1) + '.' + today.getDate(oddt);
-                            $(this).text(dateFormat);
-                        })
+                /* TODO: od_dt 데이터 가져오기
+                $(document).ready(function () {
+                    $('.od_dt').each(function () {
+                        let oddt = $(this).data("oddt"); /!* od_dt 데이터 가져오기 *!/
+                        let today = new Date();
+                        let dateFormat = today.getFullYear(oddt) + '.' + (today.getMonth(oddt) + 1) + '.' + today.getDate(oddt);
+                        $(this).text(dateFormat);
                     })
-                    */
+                })
+                */
 
-                    // $(document).ready(function () {
-                    //   $('.od_dt').each(function () {
-                    //     let oddt = $(this).data("oddt"); // od_dt 데이터 가져오기
-                    //
-                    //     // Date 객체로 변환하기 위해 oddt를 파싱
-                    //     let year = parseInt(oddt.substring(0, 4));
-                    //     let month = parseInt(oddt.substring(5, 7)) - 1; // JavaScript에서 월은 0부터 시작합니다.
-                    //     let day = parseInt(oddt.substring(8, 10));
-                    //     let date = new Date(year, month, day);
-                    //
-                    //     // Date 객체를 원하는 형식으로 변환
-                    //     let dateFormat = date.getFullYear() + '.' + (date.getMonth() + 1).toString().padStart(2, '0') + '.'
-                    //         + date.getDate().toString().padStart(2, '0');
-                    //     $(this).text(dateFormat);
-                    //   });
-                    // });
-                }
+                $(document).ready(function () {
+                  $('.od_dt').each(function () {
+                    let oddt = $(this).data("oddt"); // od_dt 데이터 가져오기
+
+                    // Date 객체로 변환하기 위해 oddt를 파싱
+                    let year = parseInt(oddt.substring(0, 4));
+                    let month = parseInt(oddt.substring(5, 7)) - 1; // JavaScript에서 월은 0부터 시작합니다.
+                    let day = parseInt(oddt.substring(8, 10));
+                    let date = new Date(year, month, day);
+
+                    // Date 객체를 원하는 형식으로 변환
+                    let dateFormat = date.getFullYear() + '.' + (date.getMonth() + 1).toString().padStart(2, '0') + '.'
+                        + date.getDate().toString().padStart(2, '0');
+                    $(this).text(dateFormat);
+                  });
+                });
+              }
             </script>
 </main>
 <jsp:include page="footer.jsp"/>

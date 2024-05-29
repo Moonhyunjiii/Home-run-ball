@@ -88,20 +88,20 @@
     order by frst_reg_dt desc, od_det_seqnum desc
   </select>
 
-    <insert id="insert" parameterType="OrderDetDto">
-        INSERT INTO ord_det
-        (od_det_seqnum, od_id, c_id, pd_id, pd_clsf_cd, od_dt, pd_name, sls_prc, od_qty)
-        select (select IFNULL(max(od_det_seqnum), 0) + 1 from ord_det where od_id = (select max(od_id) + 1 from ord))
+  <insert id="insert" parameterType="OrderDetDto">
+    INSERT INTO ord_det
+    (od_det_seqnum, od_id, c_id, pd_id, pd_clsf_cd, od_dt, pd_name, sls_prc, od_qty)
+    select (select IFNULL(max(od_det_seqnum), 0) + 1 from ord_det where od_id = (select max(od_id) + 1 from ord))
 --             ,(select CONCAT(DATE_FORMAT(CURDATE(), '%Y%m%d'), LPAD(IFNULL(max(substr(o.od_id, 9)),0)+1, 4, '0')) from ord o)
-             , (select LPAD(IFNULL(max(o.od_id), 0) + 1, 12, '0') from ord o)
-             , #{c_id}
-             , #{pd_id}
-             , #{pd_clsf_cd}
-             , now()
-             , #{pd_name}
-             , #{sls_prc}
-             , #{od_qty};
-    </insert>
+         , (select LPAD(IFNULL(max(o.od_id), 0) + 1, 12, '0') from ord o)
+         , #{c_id}
+         , #{pd_id}
+         , #{pd_clsf_cd}
+         , now()
+         , #{pd_name}
+         , #{sls_prc}
+         , #{od_qty};
+  </insert>
 
   <!--    <insert id="insert" parameterType="OrderDetDto">-->
   <!--        <selectKey keyProperty="od_det_seqnum" order="AFTER" resultType="java.lang.String">-->
@@ -148,7 +148,34 @@
     -- 1건 나와야 성공, 그 외에 뭐지?
   </update>
 
-  <select id="selectPaymentHistoryWithDateRange" parameterType="map" resultType="OrderDetDto">
+  <select id="selectByOdId" parameterType="map" resultType="OrderDetDto">
+    select od.od_det_seqnum           -- 주문고유seq
+         , od.od_id                   -- 주문id
+         , od.pd_id                   -- 상품id
+         , od.pd_clsf_cd              -- 상품옵션
+         , od.od_dt                   -- 주문일자
+         , od.pd_name                 -- 상품명
+         , od.sls_prc                 -- 소비자가
+         , od.od_qty                  -- 수량
+         , cd1.cd_name 'od_stat_name' -- 주문상태명
+         , cd2.cd_name 'brd_name'     -- 브랜드명
+         , pd.pd_type_cd              -- 사진경로1(분류)
+         , pd.mn_img_fn               -- 사진경로2(파일명)
+    from ord_det od,
+         prd pd,
+         cmn_cd cd1,
+         cmn_cd cd2
+    WHERE od.c_id = #{c_id}
+      and od.od_id = #{od_id}
+      and cd1.cd = 510 -- 510:주문상태
+      and cd2.cd = 403 -- 403:브랜드
+      and od.pd_id = pd.pd_id
+      and od.od_stat_cd = cd1.cd_type_id
+      and pd.brd_cd = cd2.cd_type_id
+    order by od.od_id desc, od.od_det_seqnum
+  </select>
+
+  <select id="selectOrderHistoryWithDateRange" parameterType="map" resultType="OrderDetDto">
     select od.od_id                   -- 주문id
          , od.pd_id                   -- 상품id
          , od.pd_clsf_cd              -- 상품옵션

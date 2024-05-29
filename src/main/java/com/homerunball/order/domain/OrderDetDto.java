@@ -84,7 +84,7 @@ public class OrderDetDto {
                 ", pd_id='" + pd_id + '\'' +
                 ", pd_clsf_cd='" + pd_clsf_cd + '\'' +
                 ", c_id='" + c_id + '\'' +
-                ", od_dt=" + od_dt +
+                ", od_dt=" + String.format("%tF",od_dt) +
                 ", pd_name='" + pd_name + '\'' +
                 ", sls_prc=" + sls_prc +
                 ", od_qty=" + od_qty +

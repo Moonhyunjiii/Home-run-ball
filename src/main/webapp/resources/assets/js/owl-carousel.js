@@ -184,15 +184,15 @@
 	 * @public
 	 */
 	Owl.Defaults = {
-		items: 3,
+		items: 4,
 		loop: false,
 		center: false,
 		rewind: false,
 		checkVisibility: true,
 
-		mouseDrag: true,
-		touchDrag: true,
-		pullDrag: true,
+		mouseDrag: false,
+		touchDrag: false,
+		pullDrag: false,
 		freeDrag: false,
 
 		margin: 0,
@@ -300,7 +300,7 @@
 	}, {
 		filter: [ 'width', 'items', 'settings' ],
 		run: function(cache) {
-			var width = (this.width() / this.settings.items).toFixed(3) - this.settings.margin,
+			var width = (this.width() / this.settings.items).toFixed(4) - this.settings.margin,
 				merge = null,
 				iterator = this._items.length,
 				grid = !this.settings.autoWidth,
@@ -760,7 +760,7 @@
 	Owl.prototype.onDragStart = function(event) {
 		var stage = null;
 
-		if (event.which === 3) {
+		if (event.which === 4) {
 			return;
 		}
 

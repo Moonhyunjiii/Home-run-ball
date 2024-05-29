@@ -309,7 +309,7 @@
 <!-- ***** 추천 제품 끝 ***** -->
 
 <div id="content">
-    <section id="main_section">
+<%--    <section id="main_section">--%>
         <div id="king">
             <div class="interview">
                 <h2 class="product-category">선수 인터뷰</h2>
@@ -465,7 +465,7 @@
                 </div>
             </div>
         </div>
-    </section>
+<%--    </section>--%>
 </div>
 
 <%--mainCategory에 필요한 페이지 include(css도 필요)--%>
@@ -540,6 +540,11 @@
         $(".wish-icon i").click(function () {
             $(this).toggleClass("fa-heart fa-heart-o");
         });
+
+        // $(".owl-stage .owl-item").css({
+        //     'width' : '420px',
+        //     'margin-right' : '15px'
+        // });
     });
 
     let slideIndex = 1;

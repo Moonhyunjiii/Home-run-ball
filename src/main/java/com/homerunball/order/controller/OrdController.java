@@ -122,6 +122,7 @@ public class OrdController {
             ordDao.insert(ord);
 
             /*System.out.println("ord_det.getC_id()" +ord_det.getC_id());*/
+            System.out.println("ord1111" + ord);
 
             m.addAttribute("list", list);
             m.addAttribute("ord", ord);

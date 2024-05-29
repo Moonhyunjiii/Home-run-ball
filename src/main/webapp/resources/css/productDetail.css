@@ -1,3 +1,6 @@
+body.productDetail{
+    margin-top: 75px;
+}
 :root {
     --btn-width : 90%;
     --btn-min-width : 90%;
@@ -48,11 +51,14 @@
     border-bottom: 0.5px solid black;
 }
 .prdMenu li{
+    letter-spacing: 0.5px;
+    line-height: 150%;
     padding-top: 10px;
+    padding-bottom: 20px;
 }
 .toggle:checked ~ .prdMenu{
-    height: var(--menu-height);
-    min-height: var(--menu-min-height);
+    height: auto;
+    min-height: auto;
     opacity: 1;
     display: block;
 }
@@ -66,9 +72,13 @@
 }
 .productItemMnImg{
     flex: 3;
+    width: 900px;
+    height: 1000px;
+    background-color: #EBEBEB;
 }
 .productItemDsc{
     flex: 2;
+    padding-left: 50px;
 }
 /*화면 중단 상세 사진*/
 .detailProductContainer{
@@ -90,7 +100,7 @@
 #mnImg{
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 /* 상세페이지 뷰 스크롤 바 (이전에 구현한 네비게이션 바)*/
 /*.prdList{*/
@@ -177,7 +187,7 @@
 .writeReviewBtn{
     position: absolute;
     right: 1%;
-    top: 10%;
+    top: 8%;
 }
 /* 리뷰테이블 */
 .reviewTable {
@@ -196,6 +206,11 @@
 }
 .reviewTable td:nth-child(2), .reviewTable td:nth-child(5){
     text-align:left;
+}
+.reviewTable td:nth-child(5){
+    color: gold;
+    font-size: 1.1em;
+    font-weight: bold;
 }
 .reviewTable th{
     background-color: whitesmoke;
@@ -230,7 +245,7 @@
 .writeQnABtn{
     position: absolute;
     right: 1%;
-    top: 10%;
+    top: 8%;
 }
 
 /* 제품문의테이블 */
@@ -248,8 +263,11 @@
 .QnATable th:nth-child(2), .QnATable td:nth-child(2) {
     width: 70%;
 }
-.QnATable td:nth-child(2), .QnATable td:nth-child(5) {
+.QnATable td:nth-child(2), .QnATable td:nth-child(5) .QnATable th:nth-child(5){
     text-align:left;
+}
+.QnATable td:nth-child(5) {
+    font-weight: bold;
 }
 .QnATable th{
     background-color: whitesmoke;
@@ -315,7 +333,7 @@ body{overflow-x: hidden}
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px; /* 이미지 간격 조정 */
+    /*gap: 20px; !* 이미지 간격 조정 *!*/
 }
 .prdRltd {
     text-align: center; /* 이미지와 제품명을 중앙 정렬 */
@@ -327,7 +345,7 @@ body{overflow-x: hidden}
     color: inherit;
 }
 .prdRltd img {
-    width: 500px; /* 이미지 너비 조정 */
+    width: 400px; /* 이미지 너비 조정 */
     height: auto; /* 비율에 맞게 높이 자동 조정 */
     cursor: pointer; /* 마우스 포인터를 손가락 모양으로 변경 */
     border: 2px solid #ddd; /* 이미지 테두리 */
@@ -351,4 +369,32 @@ body{overflow-x: hidden}
 .prdRltdTitle h2{
     font-size: 1.5em;
     text-align: center;
+}
+.QnATableAnswered{
+    color: darkgreen;
+}
+.prdDetail{
+    display: flex;
+    width: 81%;
+}
+.prdDetail ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.prdDetail .title, .prdDetail .content{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+.prdDetail .title{
+    text-align: left;
+    justify-content: flex-end;
+}
+.prdDetail .content{
+    text-align: right;
+}
+#rtl_prc{
+    text-decoration: line-through;
+    color: darkgray;
 }

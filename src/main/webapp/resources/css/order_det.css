@@ -108,12 +108,6 @@
     font-size: 14px;
 }
 
-.tb__order img {
-    height: 110px;
-    width: 110px;
-}
-
-
 .order__title__detail {
     font-size: 15px;
 }
@@ -180,7 +174,6 @@
     vertical-align: middle;
     word-break: break-all;
     border-spacing: 0;
-    margin: 0;
     outline: none;
 }
 
@@ -190,6 +183,7 @@
 }
 
 .product-info {
+    margin-left: 50px;
     display: flex;
     align-items: center;
     justify-content: left;
@@ -198,8 +192,9 @@
 
 .product-info img {
     width: 100px;
-    height: 100px;
-    object-fit: cover;
+    height: 110px;
+    object-fit: scale-down;
+    background-color: #ebebeb;
 }
 
 .info {

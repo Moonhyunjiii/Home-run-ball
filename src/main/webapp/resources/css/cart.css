@@ -21,8 +21,10 @@
     color: black;
 }
 .cart_tale img {
+    width: 100px;
     height: 110px;
-    width: 110px;
+    object-fit: scale-down;
+    background-color: #ebebeb;
 }
 
 .cart_tale th,
@@ -143,6 +145,18 @@ button:hover {
     background-color: #333;
 }
 
+#orderForm button:first-child:hover{
+    border: 1px solid #333;
+    background-color: #333;
+    color: #fff;
+}
+
+#orderForm button:last-child:hover{
+    border: 1px solid #d8d8d8;
+    background-color: white;
+    color: black;
+}
+
 #removeAllForm {
     display: flex;
     justify-content: end;
@@ -158,10 +172,41 @@ button:hover {
     text-align: center;
     background-color: white;
     color: #333;
+    margin-right: 1.3%;
 }
 
 .priceFormat {
     font-size: 16px;
     font-weight: 600;
     color: black;
+}
+
+/*상품리스트 줄 삽입*/
+.product-row {
+    border-bottom: 1px solid #ccc;
+}
+
+/*.product-row:first-child {*/
+/*    border-top: none;*/
+/*}*/
+
+.cart__title {
+    margin: 1% 8%;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-align: right;
+}
+
+.cart__title__detail a{
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.cart__title__detail a:first-child {
+    color: black;
+}
+
+.cart__title_a:nth-child(2),
+.cart__title_a:last-child{
+    color: #8d8d8d;
 }

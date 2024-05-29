@@ -77,9 +77,7 @@
   const testCouponElement = document.querySelector("#testCoupon");
 
   /* TODO: 수정 및 cors 이슈 해결 필요 */
-  let amount = 19200;
-  // amount = totalSum.textContent.replace(/,/g, '').replace(/원/g, '');
-  // document.querySelector("#totalSum")
+  let amount = 0;
 
   /*
   * @docs https://docs.tosspayments.com/reference/widget-sdk#sdk-설치-및-초기화
@@ -110,7 +108,7 @@
     coupon.disabled = false;
   });
 
-  /* ------  결제 금액 업데이트 ------ */
+  /* ------  쿠폰 결제 시 금액 업데이트 ------ */
   /* @docs https://docs.tosspayments.com/reference/widget-sdk#updateamount결제-금액 */
   coupon.addEventListener("change", function () {
     if (coupon.checked) {
@@ -119,11 +117,10 @@
       paymentMethodWidget.updateAmount(amount);
     }
   });
-  /* 추가 DEV */
+  /* 테스트베드 이벤트 */
   testAmountElement.addEventListener("change", function () {
     // amount = testAmountElement.value;
     amount = testAmountElement.value;
-    console.log("totalSum: " + totalSum + ", amount: " + amount);
     paymentMethodWidget.updateAmount(amount);
   });
   testCouponElement.addEventListener("change", function () {
@@ -135,13 +132,19 @@
   /* @docs https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보 */
   btnPayment.addEventListener("click", function () {
     /* 결제를 요청하기 전에 orderId, amount를 DB에 저장헤서 정합성 체크  */
+    amount = document.querySelector("#amount").value;
+    paymentMethodWidget.updateAmount(amount);
+
+    let od_name = document.querySelector('#dlv-rcver').textContent;
+    console.log("[btnPayment] " + amount +"|"+od_name);
+
     paymentWidget.requestPayment({
       orderId: generateRandomString(),
       orderName: document.querySelector("body > section.order__items > div.tb__order > form > table > tbody > tr:nth-child(1) > td:nth-child(2) > a").textContent,
       successUrl: window.location.origin + "/success",
       failUrl: window.location.origin + "/fail",
       customerEmail: 'hrkwon82@gmail.com',
-      customerName: '홈런볼'
+      customerName: od_name
       /* ,customerMobilePhone: '01012345678' // 핸드폰결제 미사용 */
     });
   });

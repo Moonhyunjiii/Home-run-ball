@@ -13,6 +13,7 @@
     flex-direction: column;
     padding-bottom: 30px;
     border-bottom: 3px dotted #eee;
+    width: 100%;
 }
 
 #caption {
@@ -112,8 +113,9 @@
 
 #king {
     display: flex;
-    margin-left: 15px;
-    margin-right: 15px;
+    /*margin-left: 15px;*/
+    /*margin-right: 15px;*/
+    width: 100%;
 }
 
 .interview,

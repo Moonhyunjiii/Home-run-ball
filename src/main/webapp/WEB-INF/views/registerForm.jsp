@@ -1,14 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon"
+          href="/img/icon_logo.png">
+
+
     <style>
 
         body {
@@ -55,11 +59,10 @@
             text-align: center;
             font-size: 20px;
             margin-bottom: 40px;
-            /*font-family: 'IBM Plex Sans', sans-serif;*/
         }
 
         #myform {
-            max-width: 420px;
+            max-width: 500px;
             text-align: center;
             border: 3px solid #f1f1f1;
             border-radius: 50px;
@@ -158,7 +161,7 @@
             display: inline;
         }
         #verify{
-            margin-left: 158px;
+            float: right;
             margin-bottom: 5px;
         }
 
@@ -186,6 +189,19 @@
         #ad {
             display: flex;
             justify-content: space-between;
+        }
+
+        #gndLine {
+            display: flex;
+            justify-content: left;
+            margin-top: -5px;
+            margin-bottom: 5px;
+        }
+
+        #femaleLabel,
+        #maleLabel {
+            font-size: 11px;
+            margin-top: 8px;
         }
 
 
@@ -223,8 +239,17 @@
             <label>휴대폰</label>
             <input class="special-class" type="text" id="c_phn" name="c_phn" placeholder="&nbsp;-제외" maxlength="12" disabled>
             <label>성별</label>
-            <input type="radio" id="female" name="c_gnd" value="여" disabled> 여성
-            <input type="radio" id="male" name="c_gnd" value="남" disabled> 남성<br><br>
+<%--            <input type="radio" id="female" name="c_gnd" value="여" disabled> 여성--%>
+<%--            <input type="radio" id="male" name="c_gnd" value="남" disabled> 남성<br><br>--%>
+
+            <div id="gndLine">
+                <input type="radio" id="female" name="c_gnd" value="여" disabled>
+                <label for="female" id="femaleLabel">여성</label>
+
+                <input type="radio" id="male" name="c_gnd" value="남" disabled>
+                <label for="male" id="maleLabel">남성</label><br>
+            </div>
+
             <label>생년월일</label>
             <input type="date" id="birth" name="c_birth" min="1900-01-01" max="2023-12-31" disabled><br><br>
 
@@ -562,7 +587,7 @@
                 verifyEmail();
                 setTimeout(function() {
                     $this.prop('disabled', false);
-                }, 3000); // 5초 후에 버튼 활성화
+                }, 7000);
             }
         });
     });

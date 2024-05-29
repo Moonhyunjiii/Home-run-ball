@@ -81,6 +81,7 @@ public class ProductViewController {
         return "productTest";
     }
 
+    /* search 내비에서 제품명 검색 */
     @GetMapping("/search")
     @ResponseBody
     public ResponseEntity<?> search(@RequestParam String keyword) {
@@ -93,6 +94,33 @@ public class ProductViewController {
           errorResponse.put("errorMessage", "검색중에 오류가 발생했습니다. 다시 시도해주세요.");
           return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
       }
+    }
+
+    /* 제품 타입에 따른 검색 */
+    @GetMapping("/byType")
+    public String findByType(@RequestParam("pd_type_cd") String pd_type_cd, Model model) {
+      try {
+        List<Map<String, Object>> result = productViewService.getByType(pd_type_cd);
+          model.addAttribute("result", result);
+      } catch (Exception e) {
+          /* TODO : 처리를 해야하지 않나 */
+        e.printStackTrace();
+      }
+      return "productSearchList";
+    }
+
+    @GetMapping("/byTypeMore")
+    @ResponseBody
+    public ResponseEntity<?> getMoreProducts(@RequestParam("pd_type_cd") String pd_type_cd, @RequestParam("page") int page) {
+        try {
+            List<Map<String, Object>> result = productViewService.getByType(pd_type_cd);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("errorMessage", "불러오기 중에 오류가 발생했습니다. 다시 시도해주세요..");
+            return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
 

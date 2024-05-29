@@ -12,7 +12,9 @@
 
 .main-category {
     padding-bottom: 30px;
-    border-bottom: 3px dotted #eee;
+    margin-right: 10px;
+    margin-left: 10px;
+    /*border-bottom: 3px dotted #eee;*/
 }
 
 .img-fluid {

@@ -4,7 +4,7 @@ body.productDetail{
 :root {
     --btn-width : 90%;
     --btn-min-width : 90%;
-    --btn-height : 5vh;
+    --btn-height : 40px;
     --btn-min-height : 5px;
     --menu-height : calc(var(--btn-height) * 8);
     --menu-min-height : calc(var(--btn-min-height) * 2);
@@ -26,7 +26,7 @@ body.productDetail{
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    border-top: 0.5px solid black
+    border-top: 2px solid black;
 }
 .ball{
     width: calc(var(--btn-height) * 0.4);
@@ -48,7 +48,7 @@ body.productDetail{
     margin: 0px;
     padding: 0;
     box-sizing: border-box;
-    border-bottom: 0.5px solid black;
+    border-bottom: 2px solid black;
 }
 .prdMenu li{
     letter-spacing: 0.5px;
@@ -85,6 +85,10 @@ body.productDetail{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.detailProductContainer .title{
+    font-weight: bold;
+    font-size: 1.5em;
 }
 /*제품 상세 사진*/
 .image-container {
@@ -186,12 +190,12 @@ body.productDetail{
 }
 .writeReviewBtn{
     position: absolute;
-    right: 1%;
+    right: 8%;
     top: 8%;
 }
 /* 리뷰테이블 */
 .reviewTable {
-    width: 100%;
+    width: 85%;
     border-collapse: collapse;
     table-layout: fixed;
 }
@@ -225,6 +229,7 @@ body.productDetail{
     font-size: 1.5em;
     font-weight: bold;
     padding: 20px;
+    padding-left: 8%;
 }
 .reviewContainer p{
     padding: 20px;
@@ -244,13 +249,13 @@ body.productDetail{
 }
 .writeQnABtn{
     position: absolute;
-    right: 1%;
+    right: 8%;
     top: 8%;
 }
 
 /* 제품문의테이블 */
 .QnATable {
-    width: 100%;
+    width: 85%;
     border-collapse: collapse;
     table-layout: fixed;
 }
@@ -268,6 +273,7 @@ body.productDetail{
 }
 .QnATable td:nth-child(5) {
     font-weight: bold;
+    font-size: 0.9em;
 }
 .QnATable th{
     background-color: whitesmoke;
@@ -282,6 +288,7 @@ body.productDetail{
     font-size: 1.5em;
     font-weight: bold;
     padding: 20px;
+    padding-left: 8%;
 }
 .QnAContainer p{
     padding: 20px;
@@ -291,32 +298,43 @@ body.productDetail{
     padding-top: 30px;
 }
 .prdSubmitBtn{
-    padding-top: 10px;
-    padding-bottom: 20px;
+    padding: 20px 0;
+    width: 81%;
 }
 .productMainContainer h2{
     font-size: 1.5em;
     font-weight: bold;
-    padding-bottom: 10px;
+    line-height: 110%;
+    padding-bottom: 20px;
 }
 .productMainContainer b{font-weight: bold}
 
-.productMainContainer p{padding-bottom: 10px;}
+.productMainContainer p{padding-bottom: 0;}
 
 .detailProductContainer p{padding-top: 20px}
 
-body{overflow-x: hidden}
-
-.prdWishBtn {
-    background: none;
-    border: 2.5px solid green;
-    border-radius: 10px;
+.prdSubmitBtn ul{
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    padding-bottom: 10px;
+}
+.prdSubmitBtn ul li button{
+    background-color: white;
+    border: 1px solid #333;
     cursor: pointer;
-    font-size: 20px; /* Removes any extra space around the icon */
+    text-align: center;
+    line-height: 50%;
+    font-size: 16px;
+    font-weight: 600;
+}
+.prdWishBtn {
+    cursor: pointer;
 }
 .prdWishBtn ion-icon {
     --ionicon-stroke-width: 15; /* Adjust the stroke width as needed */
-    color: red;
+    color: #333;
+    font-size: 40px;
 }
 .fillColor {
     animation: fill 1s forwards;
@@ -333,6 +351,8 @@ body{overflow-x: hidden}
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 20px solid whitesmoke;
     /*gap: 20px; !* 이미지 간격 조정 *!*/
 }
 .prdRltd {
@@ -376,6 +396,21 @@ body{overflow-x: hidden}
 .prdDetail{
     display: flex;
     width: 81%;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #333;
+}
+.prdDetailTitle{
+    width: 81%;
+    line-height: 110%;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
+.prdDetailTitlePara{
+    display: table;
+    padding: 1px 5px;
+    border-radius: 3px;
+    border: 1px solid #FF2D7A;
+    color: #FF2D7A;
 }
 .prdDetail ul{
     list-style-type: none;
@@ -384,17 +419,84 @@ body{overflow-x: hidden}
 }
 .prdDetail .title, .prdDetail .content{
     display: flex;
-    flex: 1;
     flex-direction: column;
 }
 .prdDetail .title{
     text-align: left;
     justify-content: flex-end;
+    flex: 1;
+}
+.prdDetail .content{
+    flex: 2;
 }
 .prdDetail .content{
     text-align: right;
 }
 #rtl_prc{
+    font-size: 1.2vw;
+    font-weight: bolder;
     text-decoration: line-through;
-    color: darkgray;
+}
+#sls_prc{
+    font-size: 1.2vw;
+    font-weight: bolder;
+    color: red;
+}
+.cartBtnList{
+    flex: 6;
+}
+.prdSubmitBtn ul .cartBtnList button{
+    border-right: none;
+    color: #fff;
+    background-color: #182038;
+}
+.wishBtnList{
+    flex: 1;
+}
+.buyBtnList{
+    flex: 1;
+}
+.sendGiftBtnList{
+    flex: 1;
+}
+.prdSubmitBtn button{
+    width: 100%;
+    height: 60px;
+}
+.titleList li{
+    padding-top: 20px;
+}
+.contentList li{
+    padding-top: 20px;
+}
+.prdDetail li{
+    height: 36px;
+}
+#mySelect {
+    width: 30%;
+}
+.prdDtlInfo{
+    padding-bottom: 20px;
+}
+.prdDtlInfo p{
+    padding-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+}
+.submitBtn, .sendGift {
+    transition: background-color 0.3s;
+}
+.submitBtn:hover, .sendGift:hover {
+    background-color: red;
+    color: #fff
+}
+.prdSubmitBtn ul .cartBtnList button:hover{
+    background-color: red;
+    color: #fff
+}
+.smr_dsc{
+    width: 85%;
+}
+#mySelect2{
+    width: 30%;
 }

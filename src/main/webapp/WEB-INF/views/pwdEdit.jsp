@@ -8,23 +8,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/x-icon"
+        href="/img/icon_logo.png">
+
   <style>
 
+
+
     body {
-      font-size: 11px;
+      font-size: 12px;
       font-family: "IBM Plex Sans KR", sans-serif;
     }
 
-    /*.container {*/
-    /*  width: 600px;*/
-    /*  text-align: left;*/
-    /*  margin-left: 430px;*/
-    /*}*/
-
     .container {
-      width: 600px;
+      width: 635px;
       margin: auto;
       text-align: left;
       position: relative;
@@ -64,10 +65,12 @@
       background-color: white;
       color: black;
       outline: none;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: bold;
-      width: 500px;
-      margin-left: 160px;
+      float: right;
+      margin-right: 200px;
+      margin-top: 60px;
+      margin-bottom: 60px;
     }
 
     #oneLine{
@@ -76,8 +79,9 @@
     }
 
     #pp{
-      font-size: 11px;
+      font-size: 12px;
       margin-top: 15px;
+      /*margin-left: 20px;*/
     }
     #check-newPwd{
       font-size: 11px;
@@ -88,7 +92,6 @@
 
   <link href="<c:url value='/css/reset.css'/>" type="text/css" rel="stylesheet" />
   <link href="<c:url value='/css/header.css'/>" type="text/css" rel="stylesheet" />
-  <link href="<c:url value='/css/search.css'/>" type="text/css" rel="stylesheet"/>
   <link href="<c:url value='/css/nav.css'/>" type="text/css" rel="stylesheet"/>
   <link href="<c:url value='/css/footer.css'/>" type="text/css" rel="stylesheet"/>
 </head>
@@ -109,10 +112,8 @@
       <p id="check-newPwd"></p>
 
       <label class="pwdLabel">신규 비밀번호 확인</label>
-      <input id="newPwd2" class="special-class" type="password" maxlength="15" oninput="newPwdCheck(this.form)"><br><br><br><br><br>
+      <input id="newPwd2" class="special-class" type="password" maxlength="15" oninput="newPwdCheck(this.form)">
       <button id="continue">변경</button>
-<%--      <a href="/mypage/info"><button type="button">취소</button></a><br><br>--%>
-
     </div>
   </form>
 <%--</div>--%>

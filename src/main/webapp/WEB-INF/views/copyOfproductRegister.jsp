@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="icon" type="image/x-icon" href="/img/icon_logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         table, th, td {

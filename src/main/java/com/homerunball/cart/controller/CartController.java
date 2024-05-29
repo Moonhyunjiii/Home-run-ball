@@ -174,6 +174,7 @@ public class CartController {
 //            List<ProductDto> prdImg = cartDao.getProductImg()
             System.out.println("stklist=========="+list);
 
+            System.out.println();
 
             /* Cart가 null 일경우 장바구니에 담긴 상품이 없다고 뷰애서 출력 */
             if(list.isEmpty()) {

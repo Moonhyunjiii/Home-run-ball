@@ -8,8 +8,8 @@
 
 <!-- 회원가입   -->
     <insert id="insert" parameterType="CustDto">
-        insert into cust(c_email, c_pwd, c_name, c_birth, c_gnd, c_phn, c_zip, c_road_a, c_jibun_a, c_det_a, sms_agr, email_agr)
-        values (#{c_email}, #{c_pwd}, #{c_name}, #{c_birth}, #{c_gnd}, #{c_phn}, #{c_zip}, #{c_road_a}, #{c_jibun_a}, #{c_det_a}, #{sms_agr}, #{email_agr})
+        insert into cust(c_email, c_pwd, c_name, c_birth, c_gnd, c_phn, c_zip, c_road_a, c_jibun_a, c_det_a, sms_agr, email_agr, c_adr_list_id)
+        values (#{c_email}, #{c_pwd}, #{c_name}, #{c_birth}, #{c_gnd}, #{c_phn}, #{c_zip}, #{c_road_a}, #{c_jibun_a}, #{c_det_a}, #{sms_agr}, #{email_agr}, 1)
 
     </insert>
 

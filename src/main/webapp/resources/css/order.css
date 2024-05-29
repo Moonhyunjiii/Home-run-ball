@@ -1,9 +1,3 @@
-* {
-    font-family: "IBM Plex Sans KR", sans-serif;
-    /*font-weight: 400;*/
-    font-style: normal;
-}
-
 .tb__order table {
     /* 2024.05.21 [혁락] 85% -> 55%*/
     /* 2024.05.22 [다니] 55% -> 85%*/
@@ -32,6 +26,27 @@
 
 .info {
     margin-left: 50px;
+}
+.info .brand {
+    font-weight: bold;
+}
+
+.info .name {
+    font-size: 1.1em;
+}
+
+.info .name a {
+    text-decoration: none;
+    color: black;
+}
+
+.info .name a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.info .option {
+    color: gray;
 }
 
 .order__title__detail a,
@@ -118,13 +133,6 @@
     margin-left: 10px;
     font-size: 14px;
 }
-
-
-.tb__order img {
-    height: 110px;
-    width: 110px;
-}
-
 
 .order__title__detail {
     font-size: 15px;

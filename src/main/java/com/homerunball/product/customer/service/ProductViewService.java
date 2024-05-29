@@ -14,5 +14,5 @@ public interface ProductViewService {
     List<StockViewDto> getListStkId(String pd_id) throws Exception;
     StockViewDto readStkOptInfo(String pd_id, String pd_clsf_cd) throws Exception;
     List<Map<String, Object>> getByKeyword(String keyword) throws Exception;
-
+    List<Map<String, Object>> getByType(String pd_type_cd) throws Exception;
 }

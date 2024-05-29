@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="icon" type="image/x-icon" href="/img/icon_logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -333,8 +334,6 @@
                                 <label for="npd">신상품</label><br>
                                 <input type="checkbox" id="hpd" name="pd_chr_cd" value="H">
                                 <label for="hpd">인기 제품</label><br>
-                                <input type="checkbox" id="spd" name="pd_chr_cd" value="S">
-                                <label for="spd">스테디 셀러</label><br>
                                 <input type="checkbox" id="rpd" name="pd_chr_cd" value="R">
                                 <label for="rpd">추천 제품</label><br>
                                 <input type="hidden" name="pd_chr_cd" value="">

@@ -74,7 +74,7 @@
 
     $(".asideBack").hide().removeClass("show");
     $("#hd_search").css({right: '-500px'}).removeClass("show");
-  })
+  });
 
     /* 비동기식 검색 */
   $(document).ready(function () {

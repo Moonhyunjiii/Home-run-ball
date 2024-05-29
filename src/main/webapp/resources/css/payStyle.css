@@ -111,6 +111,7 @@
   grid-template-columns: 3fr 1fr;
   grid-gap: 10px;
   width: 100%;
+  margin-top: 40px;
 }
 /* end 2024.05.27 [혁락] grid 관련 추가 */
 

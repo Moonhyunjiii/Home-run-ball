@@ -36,15 +36,6 @@ public class HomeController {
             /*모델에 hotProductNumber를 담아서 index.jsp로 넘겨준다.*/
             m.addAttribute("hotProductNumber", hotProductNumber);
 
-            /*steadyProductList: 등록된 스테디 셀러 제품을 모두 저장한다.*/
-            List<MainProductDto> steadyProductList = mainProductService.getAllSteadySalesProduct();
-            /*steadyProductNumber: 판매중인 스테디 셀러 제품 수를 저장하는 변수.*/
-            int steadyProductNumber = steadyProductList.size();
-            /*모델에 steadyProductList를 담아서 index.jsp로 넘겨준다.*/
-            m.addAttribute("steadyProductList", steadyProductList);
-            /*모델에 steadyProductNumber를 담아서 index.jsp로 넘겨준다.*/
-            m.addAttribute("steadyProductNumber", steadyProductNumber);
-
             /*recommendProductList: 등록된 추천 제품을 모두 저장한다.*/
             List<MainProductDto> recommendProductList = mainProductService.getAllRecommendSalesProduct();
             /*recommendProductNumber: 판매중인 추천 제품 수를 저장하는 변수.*/

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <link rel="icon" type="image/x-icon" href="/img/icon_logo.png">
     <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/payStyle.css'/>"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>

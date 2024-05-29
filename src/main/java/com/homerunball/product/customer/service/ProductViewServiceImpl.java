@@ -42,4 +42,9 @@ public class ProductViewServiceImpl implements ProductViewService {
     public List<Map<String, Object>> getByKeyword(String keyword) throws Exception {
         return productViewDao.findByKeyword(keyword);
     }
+
+    @Override
+    public List<Map<String, Object>> getByType(String pd_type_cd) throws Exception {
+        return productViewDao.findByType(pd_type_cd);
+    }
 }

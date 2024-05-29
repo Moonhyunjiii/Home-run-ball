@@ -25,12 +25,6 @@ public class MainProductDaoImpl implements MainProductDao {
         return session.selectList(NAMESPACE + "selectHotMainProduct");
     }
 
-    /*판매중인 스테디 셀러 제품을 선택한다.*/
-    @Override
-    public List<MainProductDto> selectAllSteadySalesProduct() throws Exception {
-        return session.selectList(NAMESPACE + "selectSteadyMainProduct");
-    }
-
     /*판매중인 추천 제품을 선택한다.*/
     @Override
     public List<MainProductDto> selectAllRecommendSalesProduct() throws Exception {

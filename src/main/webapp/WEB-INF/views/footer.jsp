@@ -5,7 +5,7 @@
     <footer class="main_footer">
         <div class="wrap_inner_left">
             <div class="footerLogo">
-                <a href="/"><img src="/img/homerunball_logo.png" style="width:250px"></a>
+                <a href="/"><img src="/img/homerunball_logo_white.png" style="width:250px"></a>
                 <span>야구용품 전문점, 브랜드 고객충성도 야구용품 부문 대상 차지예정</span>
             </div>
             <div class="footerBottom">
@@ -16,7 +16,7 @@
                     <li><a href="javascript:void(0);">개인정보처리방침 |&nbsp</a></li>
                     <li><a href="javascript:void(0);">고객센터</a></li>
                 </ul>
-                <address class="info">
+                <address class="footer_info">
                     <div>
                         <span>사업자명 : HomeRun |&nbsp</span>
                         <span>대표자명: 권혁락 외7인 |&nbsp</span>

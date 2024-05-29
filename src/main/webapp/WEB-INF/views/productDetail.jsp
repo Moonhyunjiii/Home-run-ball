@@ -1,12 +1,15 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="icon" type="image/x-icon" href="/img/icon_logo.png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -35,15 +38,22 @@
         <div class="productItemDsc">
             <div class="prdDetailTitle">
                 <h2>${prd.pd_name}</h2>
-                <p>${prd.pd_ad_cmt}</p>
+                <c:set var="myValue" value="${prd.pd_ad_cmt}" />
+                <c:choose>
+                    <c:when test="${not empty myValue}">
+                        <p class="prdDetailTitlePara">${myValue}</p>
+                    </c:when>
+                    <c:otherwise>
+                        <p></p>
+                    </c:otherwise>
+                </c:choose>
             </div>
             <div class="prdDetail">
                 <div class="title">
                     <ul class="titleList">
-                        <li><b>판매가격: </b></li>
-                        <li><b>옵션: </b></li>
-<%--                        <li><b>배송:</b></li>--%>
-<%--                        <li><b>구매 주의사항</b></li>--%>
+                        <li><b>옵션 </b></li>
+                        <li><b>추가 상품 </b></li>
+                        <li><b>판매가 </b></li>
                     </ul>
                 </div>
                 <div class="content">
@@ -57,27 +67,53 @@
                             </c:forEach>
 <%--                        가격--%>
                         </select></li>
+                        <li><select id="mySelect2">
+                            <option>선택</option>
+                            <option>종이백</option>
+                            <option>선물박스</option>
+                        </select></li>
                         <li><span id="retail-price"><span id="rtl_prc">${stkInfo.rtl_prc}</span></span><span id="sale-price"><span id="sls_prc"> ${stkInfo.sls_prc}</span>원</span></li>
 <%--                        <li>무료배송</li>--%>
                     </ul>
                 </div>
+            </div>
+            <%--            바로구매 3차 개발 예정--%>
+            <div class="prdSubmitBtn">
+                <ul>
+                    <li class="buyBtnList">
+                        <button type="button" class="submitBtn">바로구매</button>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="cartBtnList">
+                        <button type="button" class="submitBtn" onclick="submitForm('cart')">
+                           장바구니 담기 <ion-icon name="bag-outline"></ion-icon>
+                        </button>
+                    </li>
+                    <li class="wishBtnList">
+                        <%--            찜하기 3차 개발 예정--%>
+                        <button type="button" id="heartIconBtn" class="prdWishBtn">
+                            <ion-icon id="heartIcon" name="heart-outline"></ion-icon>
+                        </button>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="sendGiftBtnList">
+                        <button type="button" class="sendGift">선물하기<ion-icon name="gift-outline"></ion-icon></button>
+                    </li>
+                </ul>
             </div>
 <%--            input으로 필요한 정보 pd_id, pd_clsf_cd를 넘겨준다.--%>
                 <input id="pd_id" name="pd_id" value="${stkInfo.pd_id}" style="display: none">
                 <input id="pd_clsf_cd" name="pd_clsf_cd" style="display: none">
                 <input id="mn_img_fn" name="mn_img_fn" value="${prd.mn_img_fn}" style="display: none">
                 <input id="pd_type_cd" name="pd_type_cd" value="${prd.pd_type_cd}" style="display: none">
-            </p>
-<%--            바로구매 3차 개발 예정--%>
-            <div class="prdSubmitBtn">
-                <button type="button" class="submitBtn">바로구매</button>
-                <button type="button" class="submitBtn" onclick="submitForm('cart')">
-                    <ion-icon name="bag-outline"></ion-icon>
-                </button>
-<%--            찜하기 3차 개발 예정--%>
-                <button type="button" id="heartIconBtn" class="prdWishBtn">
-                    <ion-icon id="heartIcon" name="heart-outline"></ion-icon>
-                </button>
+
+<%--            프로모션 정보--%>
+            <div class="prdDtlInfo">
+                <p><ion-icon name="rocket-outline"></ion-icon> 5만원 이상 구매시 무료배송</p>
+                <p><ion-icon name="create-outline"></ion-icon> 리뷰 작성시 적립금 지급</p>
+                <p><ion-icon name="diamond-outline"></ion-icon> 등급별 최대 10% 할인</p>
             </div>
 <%--            토글메뉴--%>
             <div class="prdContainer">
@@ -98,7 +134,7 @@
                     <li><b>제품 상태: </b>${prd.qlt_cd}</li>
                     <li><b>제조 국가: </b>${prd.origin}</li>
                     <li><b>브랜드: </b>${prd.brd_cd}</li>
-                    <li><b>제품 제조일자: </b>${prd.pd_mnf_date}</li>
+                    <li><b>제품 제조일자: </b><span id="formattedDate" data-date="${prd.pd_mnf_date}"></span></li>
                     <li><b>재질: </b>${prd.mtrl}</li>
                     <li><b>제품 무게: </b>${prd.wgh}</li>
                     <li><b>제조사: </b>${prd.mfr}</li>
@@ -157,12 +193,13 @@
 </div>
 <%--제품 상세 내용--%>
 <div class="detailProductContainer" id="detailProductContainer">
+    <p class="title">상세 정보</p>
     <p class="image-container">
         <img src="/img/product/${prd.pd_type_cd}/detail/${prd.det_img_fn}"
              alt="이미지 준비 중 입니다"
              onerror="this.onerror=null; this.src='/img/product/${prd.pd_type_cd.toLowerCase()}/detail/${prd.det_img_fn}';" >
     </p>
-    <p>${prd.pd_smr_dsc}</p>
+    <p class="smr_dsc">${prd.pd_smr_dsc}</p>
 </div>
 <div class="reviewContainer" id="reviewContainer">
     <h2>리뷰</h2>
@@ -178,6 +215,7 @@
         <tr><td>3</td><td>제품이 파손되서 도착했습니다.</td><td>김지훈</td><td>2024.05.23</td><td>★</td></tr>
         <tr><td>2</td><td>그럭 저럭 괜찮습니다.</td><td>김지훈</td><td>2024.05.22</td><td>★★★</td></tr>
         <tr><td>1</td><td>빠른 배송 감사합니다.</td><td>김지훈</td><td>2024.05.21</td><td>★★★★★</td></tr>
+
     </table>
     <p> <a href="">&lt</a>
         <a href="">1</a>
@@ -418,8 +456,10 @@
             // Remove the animation class after it ends to allow re-triggering
             setTimeout(() => {
                 icon.classList.remove('fillColor');
-            }, 1000); // Duration of the animation
-            // alert("3차 개발 예정입니다")
+                icon.style.color = 'red';
+            }, 1000);
+        } else {
+            icon.style.color = '#333';
         }
     });
     // 가격 정의
@@ -456,6 +496,23 @@
                 }
             }
         });
+    });
+    function formatDateString(dateString) {
+        // 날짜 문자열을 변환
+        var year = dateString.substring(0, 4);
+        var month = dateString.substring(4, 6);
+        var day = dateString.substring(6, 8);
+
+        // 원하는 형식으로 변환
+        return year + "년 " + month + "월 " + day + "일";
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // HTML 데이터 속성에서 서버에서 가져온 날짜 문자열 읽기
+        var dateString = document.getElementById("formattedDate").getAttribute("data-date");
+        console.log(dateString); // 디버깅용으로 콘솔에 출력
+        // 날짜 형식을 변경하여 HTML 요소에 출력
+        document.getElementById("formattedDate").innerText = formatDateString(dateString);
     });
 </script>
 </body>

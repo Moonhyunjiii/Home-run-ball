@@ -24,7 +24,7 @@ public class CartDaoImplTest {
         assertTrue(cartDao.count()==0);
 
         int c_id = cartDao.getcustAll().get(0).getC_id();
-        CartDto cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
         assertTrue(cartDao.insert(cart)==1);
         assertTrue(cartDao.count()==1);
 
@@ -40,7 +40,7 @@ public class CartDaoImplTest {
         assertTrue(cartDao.count()==0);
 
         int c_id = cartDao.getcustAll().get(0).getC_id();
-        CartDto cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
         assertTrue(cartDao.insert(cart)==1);
         assertTrue(cartDao.count()==1);
         /* 장바구니 User U000005를 선택해서 id를 가져온다*/
@@ -63,7 +63,7 @@ public class CartDaoImplTest {
         assertTrue(cartDao.count()==0);
 
         int c_id = cartDao.getcustAll().get(0).getC_id();
-        CartDto cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
         assertTrue(cartDao.insert(cart)==1);
         assertTrue(cartDao.deleteAll()==1);
         assertTrue(cartDao.count()==0);
@@ -84,14 +84,14 @@ public class CartDaoImplTest {
 
         /* cart에 0번고객이 장바구니에 2개를추가,  */
         int c_id = cartDao.getcustAll().get(0).getC_id();
-        CartDto cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
-        CartDto cart2 = new CartDto(c_id, "GLV000021-20", "pd_clsf_code2", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart2 = new CartDto(c_id, "GLV000021-20", "pd_clsf_code2", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
         assertTrue(cartDao.insert(cart)==1);
         assertTrue(cartDao.insert(cart2)==1);
 
         /* 1번고객이 장바구니에 1개추가 총 count는 3개 */
         int c_id2 = cartDao.getcustAll().get(1).getC_id();
-        CartDto cart3 = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart3 = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
         assertTrue(cartDao.insert(cart3)==1);
         assertTrue(cartDao.count()==3);
 
@@ -112,12 +112,12 @@ public class CartDaoImplTest {
 
         /* 0번째 고객이 장바구니에 물건을 담음 */
         int c_id = cartDao.getcustAll().get(0).getC_id();
-        CartDto cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
         assertTrue(cartDao.insert(cart)==1);
         assertTrue(cartDao.count()==1);
 
          /* 0번째 고객이 장바구니에 한번 더 담은후 0번째 고객의 장바구니를 전체삭제 */
-        cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "","pd_type_cd", 2,  0, 0);
         assertTrue(cartDao.insert(cart)==1);
         assertTrue(cartDao.count()==2);
 
@@ -125,7 +125,7 @@ public class CartDaoImplTest {
         assertTrue(cartDao.count()==0);
 
         /* 0번째 고객이 장바구니에 물건을 담고 count */
-        cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        cart = new CartDto(c_id, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "","pd_type_cd", 2,  0, 0);
         assertTrue(cartDao.insert(cart)==1);
         assertTrue(cartDao.count()==1);
     }
@@ -137,12 +137,12 @@ public class CartDaoImplTest {
 
         /* 0번째고객이 장바구니에 물건을 담는다 */
         int cid = cartDao.getcustAll().get(0).getC_id();
-        CartDto cart = new CartDto(cid, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart = new CartDto(cid, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
         assertTrue(cartDao.insert(cart)==1);
 
         /* 1번째고객이 장바구니에 물건을 담는다 */
         int cid2 = cartDao.getcustAll().get(1).getC_id();
-        CartDto cart2 = new CartDto(cid2, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart2 = new CartDto(cid2, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
 
         /* cart 0번째고객과 cart3번째 고객이 같은지 비교 */
 
@@ -160,7 +160,7 @@ public class CartDaoImplTest {
 
         /* 0번째고객이 장바구니에 물건을 담는다 */
         int cid = cartDao.getcustAll().get(0).getC_id();
-        CartDto cart = new CartDto(cid, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart = new CartDto(cid, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
         assertTrue(cartDao.insert(cart)==1);
 
         /* 장바구니 전체조회할경우 개수가 1인지 확인 */
@@ -181,7 +181,7 @@ public class CartDaoImplTest {
 
         /* 0번째고객이 장바구니에 물건을 담는다 */
         int cid = cartDao.getcustAll().get(0).getC_id();
-        CartDto cart = new CartDto(cid, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart = new CartDto(cid, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
         assertTrue(cartDao.insert(cart)==1);
         assertTrue(cartDao.count()==1);
 
@@ -211,9 +211,9 @@ public class CartDaoImplTest {
         assertTrue(cartDao.count()==0);
 
         /* 0번째고객이 장바구니에 물건을 담는다 */
-        CartDto cart = new CartDto(100003, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
-        CartDto cart2 = new CartDto(100003, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
-        CartDto cart3 = new CartDto(100003, "GLV000021-20", "pd_clsf_code", "img", "pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart = new CartDto(100003, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart2 = new CartDto(100003, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
+        CartDto cart3 = new CartDto(100003, "GLV000021-20", "pd_clsf_code", "img", "","pd_name", "pd_type_cd", 2,  0, 0);
         assertTrue(cartDao.insert(cart)==1);
         assertTrue(cartDao.insert(cart2)==1);
         assertTrue(cartDao.insert(cart3)==1);

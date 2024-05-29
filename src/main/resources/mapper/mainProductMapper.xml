@@ -16,7 +16,6 @@
         ) as pp
         where p.pd_id = pp.pd_id
         order by last_mod_dt desc
-        limit 4
     </select>
 
     <!--prd(제품) 테이블에서 판매중인 인기 제품의 최대 소비자 가격과 최대 판매 가격을 stk(재고) 테이블에서 가져온다.-->
@@ -33,7 +32,6 @@
         ) as pp
         where p.pd_id = pp.pd_id
         order by last_mod_dt desc
-        limit 4
     </select>
 
     <!--prd(제품) 테이블에서 판매중인 인기 제품의 최대 소비자 가격과 최대 판매 가격을 stk(재고) 테이블에서 가져온다.-->
@@ -50,23 +48,5 @@
         ) as pp
         where p.pd_id = pp.pd_id
         order by last_mod_dt desc
-        limit 4
-    </select>
-
-    <!--prd(제품) 테이블에서 판매중인 스테디셀러 제품의 최대 소비자 가격과 최대 판매 가격을 stk(재고) 테이블에서 가져온다.-->
-    <select id="selectSteadyMainProduct" resultType="MainProductDto">
-        select p.pd_id, pd_name, mdl_name, mn_img_fn, pd_ad_cmt, pd_is_show, pd_chr_cd, pd_type_cd, pd_stat_hist_cd, max_rtl_prc, max_sls_prc, p.last_mod_dt
-        from (
-        select *
-        from prd
-        where pd_chr_cd like "%S%" and pd_stat_hist_cd like "onSale" and pd_is_show like "Y"
-        ) as p, (
-        SELECT pd_id, MAX(rtl_prc) AS max_rtl_prc, MAX(sls_prc) AS max_sls_prc
-        FROM stk
-        GROUP BY pd_id
-        ) as pp
-        where p.pd_id = pp.pd_id
-        order by last_mod_dt desc
-        limit 4
     </select>
 </mapper>

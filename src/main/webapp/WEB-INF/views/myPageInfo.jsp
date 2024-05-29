@@ -8,24 +8,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon"
+          href="/img/icon_logo.png">
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 
     <style>
-
-        body {
-            font-family: "IBM Plex Sans KR", sans-serif;
-            font-size: 11px;
-        }
-
-        /*.container {*/
-        /*    width: 515px;*/
-        /*    margin-left: 430px;*/
-        /*    text-align: left;*/
-        /*}*/
         .container {
-            width: 515px;
+            width: 550px;
             margin: auto;
             text-align: left;
             position: relative;
@@ -47,8 +41,8 @@
             cursor: pointer;
             background-color: white;
             outline: none;
-            font-size: 12px;
-            margin-right: 295px;
+            font-size: 13px;
+            margin-right: 310px;
             font-weight: bold;
         }
 
@@ -90,7 +84,7 @@
 
         #zipBtn {
             float: right;
-            margin-right: 115px;
+            margin-right: 150px;
         }
 
         #c_birth {
@@ -109,9 +103,9 @@
         }
 
         #check {
-            margin-bottom: 15px;
-            font-size: 12px;
-            margin-left: 390px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            margin-left: 395px;
             width: 500px;
             display: inline-block;
             font-weight: bold;
@@ -135,12 +129,95 @@
         }
 
         #det, #phn{
-            font-size: 11px;
+            font-size: 12px;
             margin-top: 15px;
         }
 
         #phn{
             margin-right: 37px;
+        }
+
+        .modal {
+            display: none; /* 기본적으로 숨김 */
+            position: fixed; /* 위치 고정 */
+            z-index: 1; /* 다른 요소 위에 표시 */
+            left: 0;
+            top: 0;
+            width: 100%; /* 화면 전체 너비 */
+            height: 100%; /* 화면 전체 높이 */
+            overflow: auto; /* 스크롤 가능하도록 */
+            background-color: rgba(0, 0, 0, 0.4); /* 배경색과 투명도 설정 */
+            font-size: 13px;
+        }
+
+        /* 모달 내용 스타일 */
+        .modal-content {
+            background-color: #fefefe; /* 모달 내용 배경색 */
+            margin: 15% auto; /* 중앙 정렬 */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 500px; /* 모달 내용 너비 */
+            height: 340px;
+        }
+
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #dropTitle {
+            font-size: 18px;
+            margin-top: 13px;
+        }
+
+        #dropPwd {
+            width: 250px;
+            height: 30px;
+            display: block;
+            margin-bottom: 40px;
+            font-size: 12px;
+        }
+
+        #dropBtn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 40px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: gray;
+            color: whitesmoke;
+        }
+
+        #dropOk {
+            margin-top: 7px;
+            font-size: 12px;
+        }
+
+
+        #dropDiv {
+            display: flex;
+            justify-content: center;
+            font-size: 13px;
+            float: left;
+            margin-top: 5px;
+        }
+
+        #nowPwd {
+            margin-top: 40px;
+            margin-bottom: 5px;
+        }
+
+        #pp {
+            margin-bottom: 3px;
+        }
+
+        #pp, #pp2{
+            font-size: 11px;
         }
 
     </style>
@@ -179,13 +256,13 @@
             <label class="infoLabel" id="aa">생년월일</label>
             <input type="date" id="c_birth" name="c_birth" min="1900-01-01" max="2023-12-31" value="<%= session.getAttribute("c_birth")%>" ><br><br>
           <div id="choice">
-            <a>SMS 수신</a><br>
+            <a class="infoLabel">SMS 수신</a>
             <input type="radio" id="sms_agr" name="sms_agr" value="Y" <%= session.getAttribute("sms_agr").equals("Y") ? "checked" : "" %>>
             <label for="sms_agr" class="choiceLabel">수신함</label>
             <input type="radio" id="sms_no" name="sms_agr" value="N" <%= session.getAttribute("sms_agr").equals("N") ? "checked" : "" %>>
             <label for="sms_no" class="choiceLabel">수신 안함</label><br><br>
 
-            <a>이메일 수신</a><br>
+            <a class="infoLabel">이메일 수신</a>
             <input type="radio" id="email_agr" name="email_agr" value="Y" <%= session.getAttribute("email_agr").equals("Y") ? "checked" : "" %>>
             <label for="email_agr" class="choiceLabel">수신함</label>
             <input type="radio" id="email_no" name="email_agr" value="N" <%= session.getAttribute("email_agr").equals("N") ? "checked" : "" %>>
@@ -194,11 +271,35 @@
 
 
             <div id="check">
-     <button id="edit">수정</button> <a id="delete" onclick="test()">회원탈퇴</a>
+     <button id="edit">수정</button> <a id="delete" onclick="openModal()">회원탈퇴</a>
             </div>
       </div>
     </form>
 </div>
+
+<div id="myModal" class="modal">
+
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <h4 id="dropTitle">회원 탈퇴</h4><br>
+
+        <p id="nowPwd">비밀번호</p>
+        <input id="dropPwd" type="password" placeholder="현재 사용중인 비밀번호를 적어주세요" maxlength="15">
+
+        <p id="pp">회원 탈퇴시 계정 복구가 불가능하며 회원님의 개인 정보는 탈퇴 시점으로</p>
+        <p id="pp2">3개월 동안 보관됩니다. 보관된 데이터는 3개월 뒤 자동으로 삭제됩니다.</p>
+
+
+        <div id="dropDiv">
+            <input type="checkbox" id="one">
+            <label for="one" id="dropOk">동의</label><br><br>
+        </div>
+        <button id="dropBtn">탈퇴</button>
+    </div>
+
+</div>
+<%--</div>--%>
 <jsp:include page="footer.jsp" flush="false" />
 
 
@@ -250,6 +351,15 @@
 function test(){
 alert("테스트중입니다!")
 }
+
+    function openModal() {
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    // 모달 닫기 함수
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
 
 </script>
 </body>

@@ -44,7 +44,12 @@ public class ProductViewDaoImpl implements ProductViewDao {
         return session.selectOne(NAMESPACE+"selectStkOpt", map);
     }
     @Override
-    public List<Map<String, Object>> findByKeyword(String keyword) {
+    public List<Map<String, Object>> findByKeyword(String keyword) throws Exception{
         return session.selectList(NAMESPACE+"findByKeyword", keyword);
+    }
+
+    @Override
+    public List<Map<String, Object>> findByType(String pd_type_cd) throws Exception {
+        return session.selectList(NAMESPACE+"findByType", pd_type_cd);
     }
 }

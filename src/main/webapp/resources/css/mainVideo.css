@@ -1,16 +1,11 @@
 
-/*#content {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    !* align-items: center; *!*/
-/*    flex-direction: column;*/
-/*}*/
+/*컨텐츠 두개 삭제, 킹 세션 삭제*/
 
 #content {
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    /*align-items: center;*/
+    /*flex-direction: column;*/
     padding-bottom: 30px;
     border-bottom: 3px dotted #eee;
     width: 100%;
@@ -27,21 +22,14 @@
 
 .mySlides {
     display: none;
-    /* background-color: #222; */
     margin-bottom: -4px;
-    /* margin-top: 5px; */
 }
-
-/* .cursor {
-    cursor: pointer;
-} */
 
 .cc {
     text-align: center;
     background-color: #222;
     padding: 5px;
     color: silver;
-    /* margin-bottom: 5px; */
 }
 
 .cc p {
@@ -51,7 +39,7 @@
 .column {
     float: left;
     width: 16.66%;
-    /* width: 17%; */
+    cursor: pointer;
 }
 
 .demo {
@@ -111,12 +99,9 @@
     background-color: #717171;
 }
 
-#king {
-    display: flex;
-    /*margin-left: 15px;*/
-    /*margin-right: 15px;*/
-    width: 100%;
-}
+/*#king {*/
+/*    display: flex;*/
+/*}*/
 
 .interview,
 .video {

@@ -29,6 +29,25 @@
     </select>
 <!--    제품명 키워드로 최대 5개까지 테이블을 조회-->
     <select id="findByKeyword" resultType="map" parameterType="String">
-        select pd_id, pd_name from prd where pd_name like concat('%', #{keyword} ,'%') limit 5;
+        select pd_id, pd_name from prd where pd_name like concat('%', #{keyword} ,'%') limit 5
+    </select>
+<!--    제품리스트 제품타입에 따라 테이블에서 조회 (이름, 가격, 사진)-->
+    <select id="findByType" resultType="map" >
+        SELECT s.pd_id              -- 제품 아이디
+              ,p.brd_cd	            -- 브랜드 코드
+              ,p.pd_name            -- 제품 이름
+              ,p.mn_img_fn 	        -- 제품 이미지
+              ,p.pd_type_cd         -- 제품 타입
+              ,CASE
+                     WHEN MIN(s.sls_prc) = MAX(s.sls_prc)
+                         THEN CAST(MIN(s.sls_prc) AS CHAR)
+                     ELSE CONCAT(MIN(s.sls_prc), '~', MAX(s.sls_prc))
+            END AS price_range      -- 제품 가격(사이즈별로 상이해서 최소~최대)
+        FROM prd p, stk s, CMN_CD c
+        where	p.pd_id           = s.pd_id
+          and p.pd_type_cd      = #{pd_type_cd}	-- pd_type_cd
+          and c.cd              = 403	          -- 403:브랜드
+          and p.pd_stat_hist_cd = 'onSale'      -- 파는거
+        GROUP BY p.pd_id
     </select>
 </mapper>

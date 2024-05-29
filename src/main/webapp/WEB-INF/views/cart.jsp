@@ -4,10 +4,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/x-icon" href="/img/icon_logo.png">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-          rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link href="<c:url value='/css/reset.css'/>" type="text/css" rel="stylesheet"/>
     <link href="<c:url value='/css/cart.css'/>" rel="stylesheet"/>
@@ -17,6 +19,9 @@
     <link href="<c:url value='/css/search.css'/>" type="text/css" rel="stylesheet"/>
     <link href="<c:url value='/css/footer.css'/>" type="text/css" rel="stylesheet"/>
     <link href="<c:url value='/css/nav.css'/>" type="text/css" rel="stylesheet"/>
+    <link rel="icon" type="image/x-icon"
+          href="/img/icon_logo.png">
+
     <title>장바구니</title>
 </head>
 <body class="cart">
@@ -41,21 +46,19 @@
     <table class="cart_tale">
         <colgroup>
             <col width="5%"/>
-            <col width="15%"/>
-            <col width="30%"/>
+            <col width="40%"/>
             <col width="10%"/>
             <col width="20%"/>
-            <col width="10%"/>
-            <col width="10%"/>
+            <col width="15%"/>
+            <col width="15%"/>
         </colgroup>
         <thead>
         <tr>
-            <th><input type="checkbox" id="allChk" checked="checked"/></th>
-            <th scope="col">
-                <div>이미지</div>
+            <th>
+                <input type="checkbox" id="allChk" ${msg == 'CART_EMPTY' ? "" : "checked"}/>
             </th>
             <th scope="col">
-                <div>상품정보</div>
+                <div>제품정보</div>
             </th>
             <th scope="col">
                 <div>판매가</div>
@@ -80,16 +83,26 @@
                 <c:forEach var="cartDto" items="${list}">
                     <tr class="product-row">
                         <td><input type="checkbox" class="chk" checked="checked" name="checkboxlength"/></td>
-                        <td>
-                            <a href="/product/detail?pd_id=${cartDto.pd_id}">
-                                <img src="/img/product/${cartDto.pd_type_cd}/main/${cartDto.mn_img_fn}"
-                                     alt="이미지 준비 중 입니다"
-                                     onerror="this.onerror=null; this.src='/img/product/${cartDto.pd_type_cd.toLowerCase()}/main/${cartDto.mn_img_fn}';">
-                            </a>
-                        </td>
-                        <td>
-                            <a href="/product/detail?pd_id=${cartDto.pd_id}">${cartDto.pd_name}</a>
-                            <div name="size">사이즈: ${cartDto.pd_clsf_code}</div>
+                        <td class="product-info">
+                            <div>
+                                <a href="/product/detail?pd_id=${cartDto.pd_id}">
+                                    <img src="/img/product/${cartDto.pd_type_cd}/main/${cartDto.mn_img_fn}"
+                                         alt="이미지 준비 중 입니다"
+                                         onerror="this.onerror=null; this.src='/img/product/${cartDto.pd_type_cd.toLowerCase()}/main/${cartDto.mn_img_fn}';">
+                                </a>
+                            </div>
+                            <ul class="info">
+                                <!-- 브랜드 이름 -->
+                                <li class="brand">
+                                    <span>${cartDto.cd_name}</span>
+                                </li>
+                                <!-- 상품 이름 -->
+                                <li class="name">
+                                    <a href="/product/detail?pd_id=${cartDto.pd_id}">${cartDto.pd_name}</a>
+                                </li>
+                                <!-- 상품 옵션 -->
+                                <li class="option">옵션/사이즈: ${cartDto.pd_clsf_code}</li>
+                            </ul>
                         </td>
                         <td><span name="price" class="priceFormat">${cartDto.sls_prc}</span></td>
                         <td>
@@ -130,9 +143,6 @@
         </tbody>
         <tfoot>
         <tr class="tb__left">
-            <%--            <td colspan="1">--%>
-            <%--                <div><span>[기본배송]</span></div>--%>
-            <%--            </td>--%>
             <td colspan="7">
                 <c:if test="${msg == 'CART_EMPTY'}"><h1 class="nonCart">장바구니에 담긴 상품이 없습니다.</h1></c:if>
                 <form action="" id="removeAllForm">
@@ -208,6 +218,7 @@
             const isChecked = $(this).prop('checked');
             $(".chk").prop('checked', isChecked)
         });
+
         /* 개별 체크박스 선택 */
         $('.chk').on("click", function () {
             /* 체크박스 전체갯수 구하기*/
@@ -266,7 +277,7 @@
 
         /* plus 수량변경 */
         $('.plus_btn').on('click change', function() {
-            /* 수량 input 태그를 찾아서 현재 수량을 가져온다. */
+                /* 수량 input 태그를 찾아서 현재 수량을 가져온다. */
                 let quantityInput = $(this).siblings('input[name="cart_cnt"]');
                 /* 수량의 value를 parseInt해준다 */
                 let quantity = parseInt(quantityInput.val());
